@@ -1,0 +1,175 @@
+<%-include("header.ejs") %>
+
+
+<!-- Main Content -->
+<main class="main-content">
+  <div class="content-container">
+    <h1 class="main-title">
+      <i class="fas fa-star"></i> Get Your New Favourite Show My Fellow Otaku
+    </h1>
+
+    <p class="subtitle">
+      Discover your next anime obsession with our personalized generator.
+      From classic masterpieces to hidden gems, we've got something for every taste.
+    </p>
+
+    <div class="anime-card">
+      <div class="anime-poster">
+       
+<div class="poster-placeholder">
+  <% if(images && images.jpg ) { %>
+  
+    <img src="<%= images.jpg.large_image_url %>" alt="<%= title %> poster">
+  <% } else { %>
+    <i class="fas fa-play-circle"></i>
+    <p>Anime Poster</p>
+  <% } %>
+</div>
+        
+        <div class="anime-tags">
+          <!-- CREATE A FOR LOOP FOR GENRE TAGS -->
+
+          <% for(let i=0; i < genres.length; i++){ %>
+          <% if(genres) %>
+          <span class="tag shonen genre<%=i%>">
+            <%= genres[i].name%>
+          </span>
+          <% } %>
+
+          <% if(score){ %>
+          <span class="tag rating">⭐ <%=score%>/10</span>
+          <% }else{ %>
+          <span class="tag rating">No ratings yet 😛</span>
+          <% } %>
+
+        </div>
+      </div>
+
+      <div class="anime-info">
+        <h2 class="anime-title">
+          <%=title %>
+        </h2>
+        <div class="anime-meta">
+          <% if(year){ %>
+          <span><i class="fas fa-calendar"></i>
+            <%= year %>
+          </span> <!-- YEAR -->
+          <% }else{ %>
+          <span><i class="fas fa-calendar"></i>N/A</span> <!-- YEAR -->
+          <% } %>
+<%if(episodes){%>
+          <% if(episodes > 1){%>
+          <span><i class="fas fa-tv"></i><%= episodes %> Episodes</span> <!-- NO OF EPISODES -->
+          <% }else if(episodes <= 1){ %>
+          <span><i class="fas fa-tv"></i><%= episodes %> Episode</span> <!-- NO OF EPISODES -->
+          <% } %> 
+          <%}else{%>
+          <span><i class="fas fa-tv"></i>N/A</span> <!-- NO OF EPISODES -->     
+       <%   } %>
+
+
+          <span><i class="fas fa-clock"></i>
+            <%= duration %>
+          </span> <!-- MINS PER EPISODE -->
+        </div>
+        <% if(synopsis){ %>
+        <p class="anime-description">
+          <%= synopsis %>
+        </p>
+        <% }else{ %>
+        <p class="anime-description"> We don't know anything about this, yet...</p>
+        <% } %>
+        <div class="anime-stats">
+          <div class="stat">
+            <div class="stat-value">
+              #<%= popularity %>
+            </div>
+            <div class="stat-label">Popularity</div>
+          </div>
+        
+          <div class="stat">
+            <div class="stat-value">
+              <% if(rank){%>
+              #<%= rank %>
+              <% }else{ %>
+                N/A
+                <% } %>
+            </div> <!-- ranking /10-->
+            <div class="stat-label">Rating</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">
+              <%if(episodes){%>
+                <%= episodes %>
+            <%  }else{%>
+                N/A
+            <%  }%>
+              
+            </div> <!-- episode count -->
+            <div class="stat-label">Episodes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <a onclick="window.location.href='/'" class="generate-btn">
+        <i class="fas fa-bolt"></i> Generate Anime
+      </a>
+      <p class="button-hint">
+        <i class="fas fa-lightbulb"></i> Click the button to get a new anime recommendation!
+      </p>
+    </div>
+
+    <div class="history-section">
+      <h3><i class="fas fa-history"></i> Recently Generated</h3>
+      <div class="history-list">
+
+        <!--MAKE A AN ARRAY TO CREATE A LIST OF RECENTELY GENERATED ANIME-->
+
+
+                    <div class="history-item">Attack on Titan</div>
+                    <div class="history-item">My Hero Academia</div>
+                    <div class="history-item">Jujutsu Kaisen</div>
+                    <div class="history-item">One Piece</div>
+                    <div class="history-item">Naruto: Shippuden</div>
+      </div>
+    </div>
+
+    <!-- <div class="recommendation-section">
+                <h3><i class="fas fa-thumbs-up"></i> You Might Also Like</h3>
+                <div class="recommendation-grid">
+                    <div class="rec-card">
+                        <div class="rec-poster"></div>
+                        <div class="rec-info">
+                            <h4>Jujutsu Kaisen</h4>
+                            <p>Action, Supernatural</p>
+                            <span class="rec-rating">⭐ 8.6</span>
+                        </div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-poster"></div>
+                        <div class="rec-info">
+                            <h4>Chainsaw Man</h4>
+                            <p>Action, Dark Fantasy</p>
+                            <span class="rec-rating">⭐ 8.7</span>
+                        </div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-poster"></div>
+                        <div class="rec-info">
+                            <h4>One Punch Man</h4>
+                            <p>Action, Comedy</p>
+                            <span class="rec-rating">⭐ 8.7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+</main>
+
+<%-include("footer.ejs") %>
+<!-- 
+image_url": "https://cdn.myanimelist.net/images/anime/1581/150017.jpg",
+                "small_image_url": "https://cdn.myanimelist.net/images/anime/1581/150017t.jpg",
+                "large_image_url": "https://cdn.myanimelist.net/images/anime/1581/150017l.jpg" -->
